@@ -2,7 +2,6 @@ package com.pfa.privatefeedbackapp.entities;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

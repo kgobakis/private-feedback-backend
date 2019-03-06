@@ -3,6 +3,7 @@ package com.pfa.privatefeedbackapp.entities;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

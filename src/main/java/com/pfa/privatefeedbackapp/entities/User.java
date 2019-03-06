@@ -1,5 +1,6 @@
 package com.pfa.privatefeedbackapp.entities;
 
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -11,6 +12,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "user")
+@Builder
 public class User {
 
     @Id

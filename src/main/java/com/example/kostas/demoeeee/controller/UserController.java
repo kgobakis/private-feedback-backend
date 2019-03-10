@@ -15,17 +15,17 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/users")
-    private List<User> getAllPersons() {
+    private List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/users/{id}")
-    private User getPerson(@PathVariable("id") int id) {
+    private User getUser(@PathVariable("id") int id) {
         return userService.getUserById(id);
     }
 
     @DeleteMapping("/users/{id}")
-    private void deletePerson(@PathVariable("id") int id) {
+    private void deleteUser(@PathVariable("id") int id) {
         userService.delete(id);
     }
 

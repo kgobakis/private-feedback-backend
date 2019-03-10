@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Set;
 
 @Entity
 @Data
@@ -16,6 +17,8 @@ public class User {
     private int id;
     private String name;
     private int age;
-    private String emailId;
+    private String email;
+    private String password;
 
+    private Set<Role> roles;
 }

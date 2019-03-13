@@ -8,3 +8,18 @@ spring:
   h2:
     console:
       enabled: true
+  mail:
+    host: smtp.gmail.com
+    username: privatefeedbackinc@gmail.com
+    password: Pfk12345
+    properties:
+      mail:
+        port: 587
+        smtp:
+          starttls:
+            enable: true
+            required: false
+
+
+ # servlet.multipart.max-file-size=128KB
+#  spring.servlet.multipart.max-request-size=128KB

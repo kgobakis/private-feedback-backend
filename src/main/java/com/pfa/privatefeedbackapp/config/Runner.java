@@ -24,18 +24,18 @@ public class Runner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Role role = new Role();
-        role.setRole("ADMIN");
-        Role saved = roleRepository.saveAndFlush(role);
-
-        User user = new User();
-
-        user.setEmail("georgie");
-        user.setPassword(BCrypt.encode("password"));
-        user.setName("Andreas");
-        user.setLastName("G");
-        user.setRoles(Collections.singleton(saved));
-
-        userRepository.saveAndFlush(user);
+//        Role role = new Role();
+//        role.setRole("ADMIN");
+//        Role saved = roleRepository.saveAndFlush(role);
+//
+//        User user = new User();
+//        user.setEmail("go@go.com");
+//        user.setPassword(BCrypt.encode("password"));
+//        user.setName("Andreas");
+//        user.setLastName("Gogo");
+//        user.setRoles(Collections.singleton(saved));
+//
+//
+//        userRepository.saveAndFlush(user);
     }
 }

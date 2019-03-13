@@ -1,5 +1,6 @@
 package com.pfa.privatefeedbackapp.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,4 +16,5 @@ public class Role {
 
     @Column(name = "role")
     private String role;
+
 }

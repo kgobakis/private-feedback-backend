@@ -25,6 +25,7 @@ public class UserController {
 //    private final VerificationToken verificationToken;
 
     private final BCryptPasswordEncoder BCrypt;
+
     @GetMapping("/users")
     private List<User> getAllUsers() {
         return userService.getAllUsers();

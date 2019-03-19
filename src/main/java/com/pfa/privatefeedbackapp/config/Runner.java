@@ -31,7 +31,7 @@ public class Runner implements CommandLineRunner {
 //        User user = new User();
 //        user.setEmail("go@go.com");
 //        user.setPassword(BCrypt.encode("password"));
-//        user.setName("Andreas");
+//        user.setFirstName("Andreas");
 //        user.setLastName("Gogo");
 //        user.setRoles(Collections.singleton(saved));
 //

@@ -20,7 +20,7 @@ public class User {
 //MAYBE @ GENERRATE VALUE ALLOWS US TO PASS OUR OWN METHOD1!!!!!!
     @Column(name = "email")
     @Email(message = "*Please provide a valid Email")
-    @NotEmpty(message = "*Please provide an email")
+   // @NotEmpty(message = "*Please provide an email")
     private String email;
 
     @Column(name = "password")

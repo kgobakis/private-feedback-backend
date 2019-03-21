@@ -16,7 +16,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
-    private int id;
+    private Long id;
 //MAYBE @ GENERRATE VALUE ALLOWS US TO PASS OUR OWN METHOD1!!!!!!
     @Column(name = "email")
     @Email(message = "*Please provide a valid Email")
@@ -42,8 +42,8 @@ public class User {
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    @Column(name = "emailVerified")
-    private boolean emailVerified;
+//    @Column(name = "encKey")
+//    private Long encKey;
 
     @Column (name = "verificationNumber")
     private int verificationNumber;

@@ -6,13 +6,12 @@ import com.pfa.privatefeedbackapp.entities.User;
 import com.pfa.privatefeedbackapp.service.RoleService;
 import com.pfa.privatefeedbackapp.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -25,6 +24,22 @@ public class UserController {
 //    private final VerificationToken verificationToken;
 
     private final BCryptPasswordEncoder BCrypt;
+
+    @GetMapping("/api/login")
+    private Object login(@RequestBody User user) {
+        // Checking email to see if they exist
+        User crossCheckOriginalUser = userService.getUserByEmail(user.getEmail());
+        if (crossCheckOriginalUser == null) {
+            return new Integer(0);
+        }
+
+        //Checking password to see if it matches
+        if (!BCrypt.matches(user.getPassword(), crossCheckOriginalUser.getPassword())) {
+            return new Integer(1);
+        }
+
+        return crossCheckOriginalUser;
+    }
 
     @GetMapping("/users")
     private List<User> getAllUsers() {
@@ -43,20 +58,16 @@ public class UserController {
 
     @PostMapping("/users")
     private int saveUser(@RequestBody User user) throws MessagingException {
-//        Role role = new Role();
-//        for(int i = user.getRolesStringSetUsedForSignUp().length; i < 1; i--){
-//            String currentRole = user.getRolesStringSetUsedForSignUp()[i];
-//            role.setRole(currentRole);
-//            user.setRoles(Collections.singleton(role));
-//            roleService.saveOrUpdate(role);
-//        }
-//
-//        user.setPassword(BCrypt.encode(user.getPassword()));
         int verificationToken = generateToken();
-        user.setVerificationNumber(verificationToken);
+        user.setVerificationNumber(verificationToken); // need to delete once email has been verified
         userService.saveOrUpdate(user);
         emailCertificationSender.send(user.getEmail(), "Welcome to our site!", Integer.toString(verificationToken));
         return user.getId();
+    }
+
+    @PostMapping("/users")
+    private void updateUser(@RequestBody User user) {
+        userService.saveOrUpdate(user);
     }
     public int generateToken(){
         Random random = new Random();

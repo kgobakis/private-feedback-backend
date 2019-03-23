@@ -22,17 +22,17 @@ public class UserService {
         return users;
     }
 
-    public User getUserById(int id) {
+    public User getUserById(Long id) {
         return userRepository.findById(id).get();
     }
 
-    public User getUserByEmail(String email) { return userRepository.findByEmail(email).get(); }
+    public User getUserByEmail(String email) { return userRepository.findByEmail(email); }
 
     public void saveOrUpdate(User user) {
         userRepository.save(user);
     }
 
-    public void delete(int id) {
+    public void delete(Long id) {
         userRepository.deleteById(id);
     }
 }

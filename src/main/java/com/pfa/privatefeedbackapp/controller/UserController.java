@@ -1,12 +1,11 @@
 package com.pfa.privatefeedbackapp.controller;
 
 import com.pfa.privatefeedbackapp.EmailCertificationSender;
-import com.pfa.privatefeedbackapp.entities.Role;
+
 import com.pfa.privatefeedbackapp.entities.User;
 import com.pfa.privatefeedbackapp.service.RoleService;
 import com.pfa.privatefeedbackapp.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,28 +46,30 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    private User getUser(@PathVariable("id") int id) {
+    private User getUser(@PathVariable("id") Long id) {
         return userService.getUserById(id);
     }
 
     @DeleteMapping("/users/{id}")
-    private void deleteUser(@PathVariable("id") int id) {
+    private void deleteUser(@PathVariable("id") Long id) {
         userService.delete(id);
     }
 
-    @PostMapping("/users")
-    private int saveUser(@RequestBody User user) throws MessagingException {
-        int verificationToken = generateToken();
-        user.setVerificationNumber(verificationToken); // need to delete once email has been verified
-        userService.saveOrUpdate(user);
-        emailCertificationSender.send(user.getEmail(), "Welcome to our site!", Integer.toString(verificationToken));
-        return user.getId();
-    }
+//    @PostMapping(value = "/users", consumes="application/json")
+//    private Long saveUser(@RequestBody User user) throws MessagingException {
+//        int verificationToken = generateToken();
+//        user.setVerificationNumber(verificationToken); // need to delete once email has been verified
+//        userService.saveOrUpdate(user);
+//        emailCertificationSender.send(user.getEmail(), "Welcome to our app!", Integer.toString(verificationToken));
+//        return user.getId();
+//    }
+//
+//    @PostMapping("/users")
+//    private void updateUser(@RequestBody User user) {
+//        userService.saveOrUpdate(user);
+//    }
+//
 
-    @PostMapping("/users")
-    private void updateUser(@RequestBody User user) {
-        userService.saveOrUpdate(user);
-    }
     public int generateToken(){
         Random random = new Random();
         int max = 999999;

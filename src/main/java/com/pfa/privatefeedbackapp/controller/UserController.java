@@ -44,6 +44,10 @@ public class UserController {
     private List<User> getAllUsers() {
         return userService.getAllUsers();
     }
+    @GetMapping("/home")
+    private String Home() {
+        return "Welcome!";
+    }
 
     @GetMapping("/users/{id}")
     private User getUser(@PathVariable("id") Long id) {

@@ -30,22 +30,14 @@ public class Runner implements CommandLineRunner {
 //        Role saved = roleRepository.saveAndFlush(role);
         User newUser = new User();
         newUser.setEmail("user@user.com");
-        newUser.setPassword("user123");
+        newUser.setPassword(BCrypt.encode("user123"));
         Role role = new Role();
         role.setRole("USER");
-        roleRepository.save(role);
+        Role saved = roleRepository.save(role);
 //        newUser.setRoles(Arrays.asList(new Role("USER"), new Role("ACTUATOR")));
-        newUser.setRoles(Collections.singletonList(role));
+        newUser.setRoles(Collections.singletonList(saved));
 
         userRepository.save(newUser);
-//        User user = new User();
-//        user.setEmail("go@go.com");
-//        user.setPassword(BCrypt.encode("password"));
-//        user.setFirstName("Andreas");
-//        user.setLastName("Gogo");
-//        user.setRoles(Collections.singleton(saved));
-//
-//
-//        userRepository.saveAndFlush(user);
+
     }
 }

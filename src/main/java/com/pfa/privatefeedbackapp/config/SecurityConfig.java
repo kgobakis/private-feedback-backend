@@ -16,8 +16,8 @@
 //
 //@Configuration
 //@RequiredArgsConstructor
-//@Order(SecurityProperties.BASIC_AUTH_ORDER)
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
+////@Order(SecurityProperties.BASIC_AUTH_ORDER)
+////@EnableGlobalMethodSecurity(prePostEnabled = true)
 //public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //
 //    private final AuthenticationService authenticationService;

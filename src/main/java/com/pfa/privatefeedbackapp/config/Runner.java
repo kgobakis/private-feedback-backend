@@ -29,6 +29,7 @@ public class Runner implements CommandLineRunner {
 //        role.setRole("ADMIN");
 //        Role saved = roleRepository.saveAndFlush(role);
         User newUser = new User();
+        newUser.setUsername("user");
         newUser.setEmail("user@user.com");
         newUser.setPassword(BCrypt.encode("user123"));
         Role role = new Role();

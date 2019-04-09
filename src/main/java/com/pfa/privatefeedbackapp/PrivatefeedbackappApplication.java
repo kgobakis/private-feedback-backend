@@ -30,7 +30,8 @@ public void authenticationManager(AuthenticationManagerBuilder builder, UserRepo
 
             @Override
             public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-                return new CustomUserDetails(userRepository.findByEmail(s));
+                //return new CustomUserDetails(userRepository.findByEmail(s));
+                return new CustomUserDetails(userRepository.findByUsername(s));
             }
         });
 }

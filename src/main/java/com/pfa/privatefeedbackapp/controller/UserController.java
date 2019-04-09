@@ -7,13 +7,15 @@ import com.pfa.privatefeedbackapp.service.RoleService;
 import com.pfa.privatefeedbackapp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import java.util.*;
 
 @RequiredArgsConstructor
-@RestController
+//@RestController
+@Controller
 public class UserController {
 
 
@@ -24,20 +26,9 @@ public class UserController {
 
     private final BCryptPasswordEncoder BCrypt;
 
-    @GetMapping("/api/login")
-    private Object login(@RequestBody User user) {
-        // Checking email to see if they exist
-        User crossCheckOriginalUser = userService.getUserByEmail(user.getEmail());
-        if (crossCheckOriginalUser == null) {
-            return new Integer(0);
-        }
-
-        //Checking password to see if it matches
-        if (!BCrypt.matches(user.getPassword(), crossCheckOriginalUser.getPassword())) {
-            return new Integer(1);
-        }
-
-        return crossCheckOriginalUser;
+    @GetMapping("/login")
+    private String login() {
+        return "login";
     }
 
     @GetMapping("/users")

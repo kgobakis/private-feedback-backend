@@ -18,6 +18,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private Long id;
+
+    @Column(name = "username")
+    private String username;
 //MAYBE @ GENERRATE VALUE ALLOWS US TO PASS OUR OWN METHOD1!!!!!!
     @Column(name = "email")
     @Email(message = "*Please provide a valid Email")

@@ -3,13 +3,16 @@ package com.pfa.privatefeedbackapp.config;
 import com.pfa.privatefeedbackapp.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
@@ -19,6 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class AuthenticationMananagerProvider extends WebSecurityConfigurerAdapter {
 
     private final AuthenticationService authenticationService;
+    private final UserDetailsService customerUserDetailService;
 
     public void configure(HttpSecurity http) throws Exception {
 
@@ -36,7 +40,12 @@ public class AuthenticationMananagerProvider extends WebSecurityConfigurerAdapte
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        auth.userDetailsService(authenticationService).passwordEncoder(encoder);
+        auth
+                .userDetailsService(customerUserDetailService)
+                .passwordEncoder(encoder);
+//        auth
+//                .userDetailsService(authenticationService)
+//                .passwordEncoder(encoder);
     }
     @Bean
     @Override

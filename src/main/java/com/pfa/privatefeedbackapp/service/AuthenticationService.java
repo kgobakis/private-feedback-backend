@@ -23,13 +23,15 @@ public class AuthenticationService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        com.pfa.privatefeedbackapp.entities.User user = userRepository.findByEmail(username);
+        //com.pfa.privatefeedbackapp.entities.User user = userRepository.findByEmail(username);
+        com.pfa.privatefeedbackapp.entities.User user = userRepository.findByUsername(username);
         List<GrantedAuthority> authorities = user.getRoles()
                 .stream()
                 .map(r -> r.getRole())
                 .map(s -> new SimpleGrantedAuthority(s))
                 .collect(Collectors.toList());
-        UserDetails userDetails = (UserDetails) new User(user.getEmail(), user.getPassword(), authorities);
+        //UserDetails userDetails = (UserDetails) new User(user.getEmail(), user.getPassword(), authorities);
+        UserDetails userDetails = (UserDetails) new User(user.getUsername(), user.getPassword(), authorities);
         return userDetails;
     }
 }

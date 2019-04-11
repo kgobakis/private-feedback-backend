@@ -24,8 +24,8 @@ public class AuthenticationMananagerProvider extends WebSecurityConfigurerAdapte
     private final AuthenticationService authenticationService;
     private final UserDetailsService customerUserDetailService;
 
+    @Override
     public void configure(HttpSecurity http) throws Exception {
-
         http
             .authorizeRequests()
             .antMatchers("/oauth/token").permitAll()

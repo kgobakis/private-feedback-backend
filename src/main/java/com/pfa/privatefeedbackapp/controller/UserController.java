@@ -14,8 +14,7 @@ import javax.mail.MessagingException;
 import java.util.*;
 
 @RequiredArgsConstructor
-//@RestController
-@Controller
+@RestController
 public class UserController {
 
 
@@ -35,6 +34,7 @@ public class UserController {
     private List<User> getAllUsers() {
         return userService.getAllUsers();
     }
+
     @GetMapping("/home")
     private String Home() {
         return "Welcome!";

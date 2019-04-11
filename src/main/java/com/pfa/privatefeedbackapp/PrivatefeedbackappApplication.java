@@ -25,15 +25,15 @@ public class PrivatefeedbackappApplication {
         SpringApplication.run(PrivatefeedbackappApplication.class, args);
     }
 
-public void authenticationManager(AuthenticationManagerBuilder builder, UserRepository userRepository) throws Exception {
-        builder.userDetailsService(new UserDetailsService() {
+    public void authenticationManager(AuthenticationManagerBuilder builder, UserRepository userRepository) throws Exception {
+            builder.userDetailsService(new UserDetailsService() {
 
-            @Override
-            public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-                //return new CustomUserDetails(userRepository.findByEmail(s));
-                return new CustomUserDetails(userRepository.findByUsername(s));
-            }
-        });
-}
+                @Override
+                public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+                    //return new CustomUserDetails(userRepository.findByEmail(s));
+                    return new CustomUserDetails(userRepository.findByUsername(s));
+                }
+            });
+    }
 
 }

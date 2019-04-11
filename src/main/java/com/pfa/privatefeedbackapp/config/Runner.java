@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -32,12 +33,14 @@ public class Runner implements CommandLineRunner {
         newUser.setUsername("user");
         newUser.setEmail("user@user.com");
         newUser.setPassword(BCrypt.encode("user123"));
+        //newUser.setRoles(Collections.singletonList(new Role("admin")));
         Role role = new Role();
         role.setRole("USER");
         Role saved = roleRepository.save(role);
 //        newUser.setRoles(Arrays.asList(new Role("USER"), new Role("ACTUATOR")));
         newUser.setRoles(Collections.singletonList(saved));
-
+        newUser.setFirstName("John");
+        newUser.setLastName("Doe");
         userRepository.save(newUser);
 
     }

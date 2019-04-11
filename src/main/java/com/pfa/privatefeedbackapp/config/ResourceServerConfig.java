@@ -18,7 +18,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-
         http
                 .headers()
                 .frameOptions()
@@ -28,6 +27,5 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/","/home","/register","/login").permitAll()
                 .antMatchers("/users").authenticated();
     }
-
 }
 
